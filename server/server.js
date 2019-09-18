@@ -1,6 +1,8 @@
 require('./config/config');
 
 const express = require('express');
+const mongoose = require('mongoose');
+
 const app = express();
 var bodyParser = require('body-parser');
 
@@ -8,28 +10,14 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//rutas
+app.use(require('./routes/index'));
 
-app.get('/usuario', function(req, res) {
-    res.json('get usuario');
-})
+mongoose.connect(process.env.URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }, (err, res) => {
+    if (err) throw err;
 
-app.post('/usuario', function(req, res) {
-    let user = req.body;
-    if (user.nombre === undefined) {
-        res.status(400).json({ ok: false, mensaje: "Error, falta el nombre" });
-    } else {
-        res.json({ user });
-    }
-})
-
-app.put('/usuario/:id', function(req, res) {
-    let id = req.params.id;
-    res.json({ id });
-})
-
-app.delete('/usuario', function(req, res) {
-    res.json('delete usuario');
-})
+    console.log('Db conected to localhost:27017/cafe');
+});
 
 app.listen(process.env.PORT, () => {
     console.log('escuchando por puerto', process.env.PORT);
