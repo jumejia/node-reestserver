@@ -5,6 +5,13 @@ const { verificaToken, verificaAdmin_Role } = require('../middlewares/autenticac
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 
+app.get('/test', (req, res) => {
+    return res.status(200).json({
+        ok: true,
+        time: new Date()
+    })
+})
+
 //get
 app.get('/usuario', verificaToken, (req, res) => {
 
@@ -17,24 +24,23 @@ app.get('/usuario', verificaToken, (req, res) => {
         .sort({ fecha: -1 })
         .skip(pagina)
         .limit(registros)
+        .exec((err, usuarios) => {
 
-    .exec((err, usuarios) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err
+                })
+            }
 
-        if (err) {
-            return res.status(400).json({
-                ok: false,
-                err
-            })
-        }
-
-        Usuario.estimatedDocumentCount({ estado: true }, (err, totalRegistros) => {
-            res.json({
-                ok: true,
-                totalRegistros,
-                usuarios
-            })
+            Usuario.estimatedDocumentCount({ estado: true }, (err, totalRegistros) => {
+                res.json({
+                    ok: true,
+                    totalRegistros,
+                    usuarios
+                })
+            });
         });
-    });
 });
 
 //create
