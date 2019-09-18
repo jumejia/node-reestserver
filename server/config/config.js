@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'dev') {
     urlDb = 'mongodb://localhost:27017/cafe';
     seed = 'este-es-seed-desarrollo';
 } else {
-    urlDb = 'mongodb+srv://jumejia:285Rdgy0QMq5Bgv9@cluster0-qhrxh.mongodb.net';
+    urlDb = 'mongodb+srv://jumejia:285Rdgy0QMq5Bgv9@cluster0-qhrxh.mongodb.net/test?retryWrites=true&w=majority';
     seed = 'este-es-seed-produccion';
 }
 
