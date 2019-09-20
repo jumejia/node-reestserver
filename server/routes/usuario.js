@@ -13,7 +13,7 @@ app.get('/test', (req, res) => {
 })
 
 //get
-app.get('/usuario', verificaToken, (req, res) => {
+app.get('/usuario', (req, res) => {
 
     let pagina = Number(req.query.pagina) || 0;
     let registros = Number(req.query.registros) || 5;
