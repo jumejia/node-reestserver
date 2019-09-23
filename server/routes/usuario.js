@@ -8,7 +8,9 @@ const _ = require('underscore');
 app.get('/test', (req, res) => {
     return res.status(200).json({
         ok: true,
-        time: new Date()
+        time: new Date(),
+        process.env.PORT,
+        process.env.NODE_ENV
     })
 })
 
