@@ -13,8 +13,8 @@ if (process.env.NODE_ENV === 'dev') {
     urlDb = 'mongodb://localhost:27017/cafe';
     seed = 'este-es-seed-desarrollo';
 } else {
-    urlDb = 'mongodb+srv://jumejia:Dianis1027.*@cluster0-qhrxh.mongodb.net/cafe';
-    seed = 'este-es-seed-produccion';
+    urlDb = process.env.MONGO_URI;
+    seed = process.env.SEED;
 }
 
 process.env.URL = urlDb;
