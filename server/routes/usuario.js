@@ -11,7 +11,8 @@ app.get('/test', (req, res) => {
         time: new Date(),
         port: process.env.PORT || 3000,
         env: process.env.NODE_ENV || 'dev',
-        endTokenIn: process.env.CADUCIDAD_TOKEN
+        endTokenIn: process.env.CADUCIDAD_TOKEN,
+        uriMongo: process.env.MONGO_URI || "mongodb://localhost:27017/cafe"
     })
 })
 
