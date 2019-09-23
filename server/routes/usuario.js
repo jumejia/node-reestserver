@@ -9,8 +9,8 @@ app.get('/test', (req, res) => {
     return res.status(200).json({
         ok: true,
         time: new Date(),
-        process.env.PORT,
-        process.env.NODE_ENV
+        port: process.env.PORT || 3000,
+        env: process.env.NODE_ENV || 'dev'
     })
 })
 
