@@ -24,7 +24,7 @@ app.get('/usuario', (req, res) => {
 
 
 
-    Usuario.find({ estado: true }, 'nombre email role estado google fecha')
+    Usuario.find({ estado: true }, 'nombre email role estado google fecha img')
         .sort({ fecha: -1 })
         .skip(pagina)
         .limit(registros)
